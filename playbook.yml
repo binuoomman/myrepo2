@@ -1,0 +1,12 @@
+---
+- name: To install the package
+  hosts: all
+  remote_user: ansiuser
+  become: true
+  tasks:
+  - name:  To install the httpd package
+    yum: name=httpd state=latest
+  - name:  To restart the service
+    service: name=httpd state=restarted enabled=true
+  - name: To configure the web server home page
+    file: path=/var/www/html/index.html state=touch
